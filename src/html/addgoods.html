@@ -7,13 +7,7 @@
 		<title>添加商品</title>
 		<link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
 		<script type="text/javascript" src="../layui-v2.4.5/layui/layui.js"></script>
-		<style type="text/css">
-			.demo-carousel {
-				height: 200px;
-				line-height: 200px;
-				text-align: center;
-			}
-		</style>
+		<script src="../js/MyBase.js"></script>
 	</head>
 
 	<body class="layui-layout-body">
@@ -39,7 +33,7 @@
 				<ul class="layui-nav layui-layout-right">
 					<li class="layui-nav-item">
 						<a href="javascript:;">
-							<img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+							<img src="http://t.cn/RCzsdCq" class="layui-nav-img"> <span id="username">贤心</span>
 						</a>
 						<dl class="layui-nav-child">
 							<dd>
@@ -48,7 +42,8 @@
 						</dl>
 					</li>
 					<li class="layui-nav-item">
-						<a href="">退了</a>
+						<a class="exit">退了</a>
+						<script src="../js/exit.js" type="text/javascript" charset="utf-8"></script>
 					</li>
 				</ul>
 			</div>
