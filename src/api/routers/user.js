@@ -11,7 +11,7 @@ router.get('/',async (ctx,next)=>{
 	//获取前端传过来的页码page和页容量limit
 	let {page,limit} = ctx.request.query;
 	let start = (page-1)*limit;
-    let mongores = await db.find('user',{});
+    let mongores = await db.find('user',{"identity" : "用户"});//只能查看用户信息
     //处理数据分页渲染
     let res = mongores.slice(start,limit*page);
     let res1 = {

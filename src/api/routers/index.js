@@ -21,6 +21,7 @@ const findByidRouter = require('./findBy_id');//修改之前要查询根据_id�
 const orderRouter = require('./order');//返回订单信息
 const deleteRouter = require('./delete');//表格删除行路由
 const orderUpdataRouter = require('./orderUpdata');//修改用户信息
+const isAdminRouter = require('./isAdmin');//判断权限身份
 
 router.use(koaBody({
     // 支持formdata
@@ -57,4 +58,6 @@ router.use('/userUpdata',userUpdataRouter.routes());
 router.use('/order',orderRouter.routes());
 router.use('/delete',deleteRouter.routes());
 router.use('/orderUpdata',orderUpdataRouter.routes());
+router.use('/isAdmin',isAdminRouter.routes());
+
 module.exports = router;

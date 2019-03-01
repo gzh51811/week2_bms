@@ -1,3 +1,4 @@
+s
 <!DOCTYPE html>
 <html>
 
@@ -6,14 +7,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>用户列表</title>
 		<link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
-		
+
 		<style type="text/css">
-			.navtitle{
+			.navtitle {
 				color: white;
 				margin: 0 15px;
 			}
 		</style>
-		
+
 		<script type="text/javascript" src="../layui-v2.4.5/layui/layui.js"></script>
 	</head>
 
@@ -24,8 +25,10 @@
 				<ul class="layui-nav layui-layout-left">
 					<li>
 						<a class="layui-nav-item navtitle">首页</a>
-						/<a class="layui-nav-item navtitle">首页</a>
-						/<a class="layui-nav-item navtitle">首页</a>
+						/
+						<a class="layui-nav-item navtitle">首页</a>
+						/
+						<a class="layui-nav-item navtitle">首页</a>
 					</li>
 				</ul>
 				<ul class="layui-nav layui-layout-right">
@@ -176,70 +179,105 @@
 								]
 							});
 
-							//监听头工具栏事件
-							table.on('toolbar(test)', function(obj) {
-								var checkStatus = table.checkStatus(obj.config.id),
-									data = checkStatus.data; //获取选中的数据
-								switch(obj.event) {
-									case 'add':
-										layer.msg('添加');
-										//跳到用户添加界面
-										location.href = 'userAdd.html';
-										break;
-									case 'update':
-										if(data.length === 0) {
-											layer.msg('请选择一行');
-										} else if(data.length > 1) {
-											layer.msg('只能同时编辑一个');
-										} else {
-											location.href = 'userEdit.html?_id=' + checkStatus.data[0]._id;
-										}
-										break;
-									case 'delete':
-										if(data.length === 0) {
-											layer.msg('请选择一行');
-										} else {
+							//5c77c5e0b3ef9808ecde6dcb用户
+							//5c78ac2bb45e5c0df479192e管理员
+							let login_id = '5c78ac2bb45e5c0df479192e'; //拿到当前账号_id;用户
+							let isAdminxhr = new XMLHttpRequest();
+							var isAdmin = false;
+							isAdminxhr.onload = () => {
+								if(!JSON.parse(isAdminxhr.responseText).code) {
+									isAdmin = true;
+								} else {
+									isAdmin = false;
+								}
+
+								//监听头工具栏事件
+								table.on('toolbar(test)', function(obj) {
+									var checkStatus = table.checkStatus(obj.config.id),
+										data = checkStatus.data; //获取选中的数据
+									switch(obj.event) {
+										case 'add':
+											if(isAdmin) {
+												location.href = 'userAdd.html';
+											} else {
+												layer.msg('你没有权限添加账号');
+											}
+											break;
+										case 'update':
+											if(data.length === 0) {
+												layer.msg('请选择一行');
+											} else if(data.length > 1) {
+												layer.msg('只能同时编辑一个');
+											} else {
+												if(isAdmin) {
+													location.href = 'userEdit.html?_id=' + checkStatus.data[0]._id;
+												} else {
+													layer.msg('你没有权限修改用户信息');
+												}
+											}
+											break;
+										case 'delete':
+											if(data.length === 0) {
+												layer.msg('请选择一行');
+											} else {
+												if(isAdmin) {
+													layer.confirm('真的删除行么', function(index) {
+														//多选删除
+														let idarr = [];
+														for(let i = 0; i < checkStatus.data.length; i++)
+															idarr.push(checkStatus.data[i]._id);
+														let xhr = new XMLHttpRequest();
+														xhr.open('POST', '/delete', true);
+														xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+														xhr.send('colname=user&_id=' + idarr);
+														//删除完后更新页面
+														location.reload();
+													});
+												} else {
+													layer.msg('你没有权限删除账号');
+												}
+											}
+											break;
+									};
+								});
+
+								//监听行工具事件
+								table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+									var data = obj.data //获得当前行数据
+										,
+										layEvent = obj.event; //获得 lay-event 对应的值
+									if(layEvent === 'detail') {
+										layer.msg('查看操作');
+									} else if(layEvent === 'del') {
+										if(isAdmin) {
 											layer.confirm('真的删除行么', function(index) {
-												//多选删除
+												obj.del(); //删除对应行（tr）的DOM结构
+												layer.close(index);
+												//向服务端发送删除指令
 												let idarr = [];
-												for(let i = 0; i < checkStatus.data.length; i++)
-													idarr.push(checkStatus.data[i]._id);
 												let xhr = new XMLHttpRequest();
 												xhr.open('POST', '/delete', true);
+												let _id = obj.data._id;
+												idarr.push(_id);
 												xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 												xhr.send('colname=user&_id=' + idarr);
-												//删除完后更新页面
-												location.reload();
 											});
+										} else {
+											layer.msg('你没有权限删除其它用户信息');
 										}
-										break;
-								};
-							});
+									} else if(layEvent === 'edit') {
+										if(isAdmin) {
+											location.href = 'userEdit.html?_id=' + checkStatus.data[0]._id;
+										} else {
+											layer.msg('你没有权限编辑其它用户信息');
+										}
+									}
+								});
 
-							//监听行工具事件
-							table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-								var data = obj.data //获得当前行数据
-									,
-									layEvent = obj.event; //获得 lay-event 对应的值
-								if(layEvent === 'detail') {
-									layer.msg('查看操作');
-								} else if(layEvent === 'del') {
-									layer.confirm('真的删除行么', function(index) {
-										obj.del(); //删除对应行（tr）的DOM结构
-										layer.close(index);
-										//向服务端发送删除指令
-										let idarr = [];
-										let xhr = new XMLHttpRequest();
-										xhr.open('POST', '/delete', true);
-										let _id = obj.data._id;
-										idarr.push(_id);
-										xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-										xhr.send('colname=user&_id=' + idarr);
-									});
-								} else if(layEvent === 'edit') {
-									layer.msg('编辑操作');
-								}
-							});
+							}
+							isAdminxhr.open('POST', '/isAdmin', true);
+							isAdminxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+							isAdminxhr.send('colname=user&_id=' + login_id);
 
 							//分页
 							laypage.render({
