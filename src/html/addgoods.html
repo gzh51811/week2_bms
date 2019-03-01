@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>商品列表</title>
+		<link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
+		<script type="text/javascript" src="../layui-v2.4.5/layui/layui.js"></script>
+		<style type="text/css">
+			.demo-carousel {
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<!--头部-->
+			<div class="layui-header">
+				<div class="layui-logo">电商后台管理系统</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item">
+						<a href="">控制台</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="goodslist.html">商品管理</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="">用户</a>
+					</li>
+					<!--<li class="layui-nav-item">
+						<a href="javascript:;">其它系统</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="">邮件管理</a>
+							</dd>
+							<dd>
+								<a href="">消息管理</a>
+							</dd>
+							<dd>
+								<a href="">授权管理</a>
+							</dd>
+						</dl>
+					</li>-->
+				</ul>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="">基本资料</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="">退了</a>
+					</li>
+				</ul>
+			</div>
+
+			<!--左侧栏-->
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<li class="layui-nav-item layui-nav-itemed">
+							<a class="" href="javascript:;">所有商品</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="goodslist.html">商品列表</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">用户管理</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">用户添加</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">修改用户信息</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">订单管理</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">订单列表</a>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--内容主题-->
+			<div class="layui-body">
+				<div style="padding: 15px;">
+					<form class="layui-form"  action="goodslist.html">
+						<div class="layui-form-item">
+							<label class="layui-form-label">商品名称</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="goodsname" lay-verify="required" autocomplete="off" placeholder="请输入商品名称" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">商品副标题</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="goodstitle" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">商品原价</label>
+								<div class="layui-input-inline" style="width: 100px;">
+									<input type="text" name="nowprice" placeholder="￥" autocomplete="off" class="layui-input">
+								</div>
+								<label class="layui-form-label">商品销售价</label>
+								<div class="layui-input-inline" style="width: 100px;">
+									<input type="text" name="oldprice" placeholder="￥" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">库存</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">上传图片</label>
+							<div class="layui-upload">
+								<button type="button" class="layui-btn" id="test2">多图片上传</button>
+								<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;margin-left: 110px;">
+									预览图：
+									<div class="layui-upload-list" id="demo2"></div>
+								</blockquote>
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">分类</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<select name="goodsclass" lay-filter="aihao">
+									<option value=""></option>
+									<option value="电器">电器</option>
+									<option value="生活用品">生活用品</option>
+									<option value="蔬果">蔬果</option>
+									<option value="书籍">书籍</option>
+									<option value="家具">家具</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">上架</label>
+							<div class="layui-input-block">
+								<input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">商品属性</label>
+							<div class="layui-input-block">
+								<input type="checkbox" name="hot" title="热销">
+								<input type="checkbox" name="recommend" title="推荐">
+								<input type="checkbox" name="sales" title="促销">
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">商品描述</label>
+							<div class="layui-input-block">
+								<textarea placeholder="请输入内容" name="describe" class="layui-textarea"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="layui-footer">
+				<!-- 底部固定区域 -->
+			</div>
+		</div>
+		<script>
+			//JavaScript代码区域
+			layui.use('element', function() {
+				var element = layui.element;
+			});
+			var filePath = [];
+			//多图片上传
+			layui.use('upload', function() {
+				var $ = layui.jquery,
+					upload = layui.upload;
+				upload.render({
+					elem: '#test2',
+					url: '/uploadp',
+					multiple: true,
+					headers: {
+						token: 'sasasas'
+					},
+					before: function(obj) {
+						//预读本地文件示例，不支持ie8
+						obj.preview(function(index, file, result) {
+							$('#demo2').append('<img style="height:100px; margin-left: 10px;" src="' + result + '" alt="' + file.name + '" class="layui-upload-img">')
+						});
+					},
+					done: function(res, index, upload) {
+						filePath.push(res.data.src);
+					}
+				});
+			});
+
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form,
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+
+				//自定义验证规则
+				form.verify({
+					content: function(value) {
+						layedit.sync(editIndex);
+					}
+				});
+
+				//监听指定开关
+				form.on('switch(switchTest)', function(data) {
+					layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+						offset: '6px'
+					});
+				});
+
+				//监听提交
+				form.on('submit(demo1)', function(data) {
+					data.field.file = filePath.join('&');
+					let maindata = data.field;
+					//ajax
+					let xhr = new XMLHttpRequest();
+					xhr.onload = () => {
+						if(xhr.status == 200) {
+							let res = JSON.parse(xhr.responseText);
+							console.log(res)
+							if(res.ok) {
+								location.href = 'goodslist.html';
+							}
+						}
+					}
+					xhr.open('post', '/addgoods', true);
+					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					let res = `goodsname=${maindata.goodsname}&goodstitle=${maindata.goodstitle}&nowprice=${maindata.nowprice}&oldprice=${maindata.oldprice}&number=${maindata.number}&file=${maindata.file}&goodsclass=${maindata.goodsclass}&close=${maindata.close}&hot=${maindata.hot}&recommend=${maindata.recommend}&sales=${maindata.sales}&describe=${maindata.describe}`
+					xhr.send(res);
+					return false
+				});
+
+				//表单初始赋值
+				form.val('example', {
+					"goodsname": "贤心" // "name": "value"
+						,
+					"goodstitle": "123456",
+					"goodsclass": 1,
+					"hot": true //复选框选中状态
+						,
+					"close": true //开关状态
+						,
+					"describe": "好"
+				})
+
+			});
+		</script>
+	</body>
+
+</html>
