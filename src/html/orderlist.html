@@ -25,20 +25,9 @@
 					<li class="layui-nav-item">
 						<a href="userlist.html">用户</a>
 					</li>
-					<!--<li class="layui-nav-item">
-						<a href="javascript:;">其它系统</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a href="">邮件管理</a>
-							</dd>
-							<dd>
-								<a href="">消息管理</a>
-							</dd>
-							<dd>
-								<a href="">授权管理</a>
-							</dd>
-						</dl>
-					</li>-->
+					<li class="layui-nav-item">
+						<a href="orderlist.html">订单</a>
+					</li>
 				</ul>
 				<ul class="layui-nav layui-layout-right">
 					<li class="layui-nav-item">
@@ -68,17 +57,13 @@
 								<dd>
 									<a href="goodslist.html">商品列表</a>
 								</dd>
-								
 							</dl>
 						</li>
 						<li class="layui-nav-item">
 							<a href="javascript:;">用户管理</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="userAdd.html">用户添加</a>
-								</dd>
-								<dd>
-									<a href="userEdit.html">修改用户信息</a>
+									<a href="userlist.html">用户列表</a>
 								</dd>
 							</dl>
 						</li>
@@ -87,9 +72,6 @@
 							<dl class="layui-nav-child">
 								<dd>
 									<a href="orderlist.html">订单列表</a>
-								</dd>
-								<dd>
-									<a href="orderEdit.html">订单状态修改</a>
 								</dd>
 							</dl>
 						</li>
@@ -180,7 +162,7 @@
 											width: 100,
 											sort: true,
 											totalRow: true
-										},{
+										}, {
 											field: 'orderstatus',
 											title: '订单状态',
 											width: 120,
@@ -202,7 +184,7 @@
 									data = checkStatus.data; //获取选中的数据
 								switch(obj.event) {
 									case 'add':
-										layer.msg('你是管理员不能添加订单');//
+										layer.msg('你不是客户不能添加订单'); //
 										break;
 									case 'update':
 										if(data.length === 0) {
@@ -211,7 +193,7 @@
 											layer.msg('只能同时编辑一个');
 										} else {
 											//跳到编辑订单页
-											location.href = 'orderEdit.html?_id='+checkStatus.data[0]._id;
+											location.href = 'orderEdit.html?_id=' + checkStatus.data[0]._id;
 										}
 										break;
 									case 'delete':
@@ -251,8 +233,8 @@
 										let xhr = new XMLHttpRequest();
 										xhr.open('POST', '/delete', true);
 										let _id = obj.data._id;
-										xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-										xhr.send('colname=order&_id='+_id);
+										xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+										xhr.send('colname=order&_id=' + _id);
 									});
 								} else if(layEvent === 'edit') {
 									layer.msg('编辑操作');

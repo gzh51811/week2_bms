@@ -17,7 +17,7 @@ router.post('/', async(ctx, next) => {
 
 	let res = await db.find('user', {
 		username,
-		password
+		psw:password
 	});
 
 	res = res[0];
