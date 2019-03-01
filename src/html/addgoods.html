@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>商品列表</title>
+		<title>添加商品</title>
 		<link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
 		<script type="text/javascript" src="../layui-v2.4.5/layui/layui.js"></script>
 		<style type="text/css">
@@ -23,14 +23,14 @@
 				<div class="layui-logo">电商后台管理系统</div>
 				<!-- 头部区域（可配合layui已有的水平导航） -->
 				<ul class="layui-nav layui-layout-left">
-					<li class="layui-nav-item">
+					<!--<li class="layui-nav-item">
 						<a href="">控制台</a>
-					</li>
+					</li>-->
 					<li class="layui-nav-item">
 						<a href="goodslist.html">商品管理</a>
 					</li>
 					<li class="layui-nav-item">
-						<a href="">用户</a>
+						<a href="userlist.html">用户</a>
 					</li>
 					<!--<li class="layui-nav-item">
 						<a href="javascript:;">其它系统</a>
@@ -75,16 +75,17 @@
 								<dd>
 									<a href="goodslist.html">商品列表</a>
 								</dd>
+								
 							</dl>
 						</li>
 						<li class="layui-nav-item">
 							<a href="javascript:;">用户管理</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="javascript:;">用户添加</a>
+									<a href="userAdd.html">用户添加</a>
 								</dd>
 								<dd>
-									<a href="javascript:;">修改用户信息</a>
+									<a href="userEdit.html">修改用户信息</a>
 								</dd>
 							</dl>
 						</li>
@@ -92,7 +93,10 @@
 							<a href="javascript:;">订单管理</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="javascript:;">订单列表</a>
+									<a href="orderlist.html">订单列表</a>
+								</dd>
+								<dd>
+									<a href="orderEdit.html">订单状态修改</a>
 								</dd>
 							</dl>
 						</li>
