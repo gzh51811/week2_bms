@@ -14,6 +14,13 @@ const deletegoods = require('./deletegoods');
 const uploadp = require('./uploadp');
 const addgoods = require('./addgoods');
 const updatagoods = require('./updatagoods');
+const userRouter = require('./user');//返回用户信息
+const userAddRouter = require('./userAdd');//添加用户信息
+const userUpdataRouter = require('./userUpdata');//修改用户信息
+const findByidRouter = require('./findBy_id');//修改之前要查询根据_id信息
+const orderRouter = require('./order');//返回订单信息
+const deleteRouter = require('./delete');//表格删除行路由
+const orderUpdataRouter = require('./orderUpdata');//修改用户信息
 
 router.use(koaBody({
     // 支持formdata
@@ -42,4 +49,12 @@ router.use('/deletegoods',deletegoods.routes())
 router.use('/uploadp',uploadp.routes())
 router.use('/addgoods',addgoods.routes())
 router.use('/updatagoods',updatagoods.routes())
+
+router.use('/user',userRouter.routes());
+router.use('/userAdd',userAddRouter.routes());
+router.use('/findBy_id',findByidRouter.routes());
+router.use('/userUpdata',userUpdataRouter.routes());
+router.use('/order',orderRouter.routes());
+router.use('/delete',deleteRouter.routes());
+router.use('/orderUpdata',orderUpdataRouter.routes());
 module.exports = router;

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>订单信息修改</title>
+		<link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
+
+		<style type="text/css">
+			.navtitle {
+				color: white;
+				margin: 0 15px;
+			}
+			
+			.demo-carousel {
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+			}
+		</style>
+
+		<script type="text/javascript" src="../layui-v2.4.5/layui/layui.js"></script>
+	</head>
+
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">电商后台管理系统</div>
+				<ul class="layui-nav layui-layout-left">
+					<li>
+						<a class="layui-nav-item navtitle">首页</a>
+						/
+						<a class="layui-nav-item navtitle">首页</a>
+						/
+						<a class="layui-nav-item navtitle">首页</a>
+					</li>
+				</ul>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="">基本资料</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="">退了</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<li class="layui-nav-item layui-nav-itemed">
+							<a class="" href="javascript:;">所有商品</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">商品列表</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">商品管理</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">用户管理</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">用户添加</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">修改用户信息</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">订单管理</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">订单列表</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">订单状态修改</a>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="layui-body">
+				<!-- 内容主体区域 -->
+				<script src="../js/editTitle.js" type="text/javascript" charset="utf-8"></script>
+				<div style="padding: 15px;">
+					<form class="layui-form" action="" lay-filter="example">
+						<div class="layui-form-item">
+							<label class="layui-form-label">商品名</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="goodname" autocomplete="off" disabled placeholder="商品名不能从订单这修改" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">价格</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="price" disabled placeholder="价格不能从订单这修改" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">数量</label>
+								<div class="layui-input-block">
+									<input type="number" name="num" lay-verify="num" id="num" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">运费</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="freight" id="freight" lay-verify="float" placeholder="请输入运费" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">商品总额</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="amount" id="amount" disabled autocomplete="off" placeholder="商品总额固定" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">订单总额</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="totalsum" id="totalsum" disabled autocomplete="off" placeholder="订单总额固定" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">下单时间</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="ordertime" disabled autocomplete="off" placeholder="请输入密码" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">下单者</label>
+							<div class="layui-input-block" style="width: 500px;">
+								<input type="text" name="orderhoster" lay-verify="title" autocomplete="off" placeholder="下单者" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">订单状态</label>
+								<div class="layui-input-inline" style="width: 100px;">
+									<select name="orderstatus" lay-filter="aihao">
+										<option value=""></option>
+										<option value="未付款">未付款</option>
+										<option value="支付成功">支付成功</option>
+										<option value="发货">发货</option>
+										<option value="签收">签收</option>
+										<option value="完成订单">完成订单</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit="" lay-filter="demo1">确认修改</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="layui-footer">
+				<!-- 底部固定区域 -->
+			</div>
+		</div>
+		<!--查询相应_id的信息并渲染到页面表单内-->
+		<script>
+			//JavaScript代码区域
+			layui.use('element', function() {
+				var element = layui.element;
+			});
+
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form,
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+
+				//日期
+				laydate.render({
+					elem: '#date'
+				});
+				laydate.render({
+					elem: '#date1'
+				});
+
+				//创建一个编辑器
+				var editIndex = layedit.build('LAY_demo_editor');
+
+				//自定义验证规则
+				form.verify({
+					title: function(value) {
+						if(value.length < 4) {
+							return '用户名至少得4个字符啊';
+						}
+					},
+					num: [
+						/^[1-9]|([1-9][0-9]+)$/, '必须为正的数字'
+					],
+					float: [
+						/^[0-9]+([.]{1}[0-9]+){0,1}$/, '必须为正的数字'
+					],
+					content: function(value) {
+						layedit.sync(editIndex);
+					}
+				});
+
+				let _id = location.search.slice(5);
+				//监听修改
+				form.on('submit(demo1)', function(data) {
+					if(data.field.psw == data.field.comfirepsw) {
+						let xhr = new XMLHttpRequest();
+						xhr.onload = () => {
+							if(!JSON.parse(xhr.responseText).code) {
+								location.href = 'orderlist.html';
+							}
+						}
+						xhr.open('POST', '/orderUpdata', true);
+						xhr.setRequestHeader('Content-Type', 'application/json');
+						data.field._id = _id;
+						xhr.send(JSON.stringify(data.field));
+						return false;
+					} else {
+						layer.alert('两次输入的密码不一样');
+						return false;
+					}
+				});
+
+				//初始化表单内容到页面用来修改
+				let formdefault = {};
+				let xhr = new XMLHttpRequest();
+				xhr.onload = () => {
+					formdefault = JSON.parse(xhr.responseText).data[0];
+					let goodprice = formdefault.price;
+//					let date2 = new Date();
+//					date2.setTime(formdefault.ordertime);
+//					formdefault.ordertime = date2.toLocaleString(); //
+					//表单初始赋值
+					form.val('example', formdefault);
+					//监听数量框值变化
+					var num = document.getElementById('num'); //数量
+					var freight = document.getElementById('freight'); //运费
+					var amount = document.getElementById('amount'); //不加运费总价
+					var totalsum = document.getElementById('totalsum'); //总额
+
+					num.onchange = () => {
+						if(num.value <= 0) {
+							num.value = 0;
+							amount.value = 0;
+							totalsum.value = 0;
+						} else {
+							amount.value = goodprice * num.value;
+							totalsum.value = amount.value * 1 + freight.value * 1;
+						}
+					}
+					freight.onchange = () => {
+						if(freight.value <= 0) {
+							freight.value = 0;
+							totalsum.value = amount.value;
+						} else {
+							amount.value = goodprice * num.value;
+							totalsum.value = amount.value * 1 + freight.value * 1;
+						}
+					}
+				}
+				xhr.open('get', '/findBy_id?colname=order&_id=' + _id, true);
+				xhr.send();
+			});
+		</script>
+	</body>
+
+</html>
