@@ -8,12 +8,13 @@ var router = new Router();
 // 引入页面路由
 const registryRouter = require('./registry');
 const loginRouter = require('./login');
-const goods = require('./goods');
-const findgoods = require('./findgoods');
-const deletegoods = require('./deletegoods');
-const uploadp = require('./uploadp');
-const addgoods = require('./addgoods');
-const updatagoods = require('./updatagoods');
+const goodsRouter = require('./goods');
+const findgoodsRouter = require('./findgoods');
+const deletegoodsRouter = require('./deletegoods');
+const uploadpRouter = require('./uploadp');
+const addgoodsRouter = require('./addgoods');
+const updatagoodsRouter = require('./updatagoods');
+const tokenverifyRouter = require('./tokenverify');//密令
 const userRouter = require('./user');//返回用户信息
 const userAddRouter = require('./userAdd');//添加用户信息
 const userUpdataRouter = require('./userUpdata');//修改用户信息
@@ -44,13 +45,13 @@ router.use(koaBody({
 
 router.use('/registry',registryRouter.routes())
 router.use('/login',loginRouter.routes())
-router.use('/goods',goods.routes())
-router.use('/findgoods',findgoods.routes())
-router.use('/deletegoods',deletegoods.routes())
-router.use('/uploadp',uploadp.routes())
-router.use('/addgoods',addgoods.routes())
-router.use('/updatagoods',updatagoods.routes())
-
+router.use('/goods',goodsRouter.routes())
+router.use('/findgoods',findgoodsRouter.routes())
+router.use('/deletegoods',deletegoodsRouter.routes())
+router.use('/uploadp',uploadpRouter.routes())
+router.use('/addgoods',addgoodsRouter.routes())
+router.use('/updatagoods',updatagoodsRouter.routes())
+router.use('/tokenverify',tokenverifyRouter.routes())
 router.use('/user',userRouter.routes());
 router.use('/userAdd',userAddRouter.routes());
 router.use('/findBy_id',findByidRouter.routes());
