@@ -20,8 +20,7 @@
 		xhr.send('token=' + user.data.token)
 	}
 	exit.onclick = () => {
-		cookie.remove('_id');
-		cookie.remove('username');
+		cookie.remove('user');
 		location.href = '../index.html';
 	}
 
