@@ -29,9 +29,7 @@ JavaScript框架|	nodejs
          ├── README.md	项目说明文档
 
          ├── package.json	Node.js模块描述文件
-
-         ├── package-lock.json	模块版本锁定文件
-
+         
          ├── .gitignore	忽略文件目录
 
          └── src/	源文件
