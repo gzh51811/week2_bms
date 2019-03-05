@@ -172,7 +172,8 @@
 
 							//5c77c5e0b3ef9808ecde6dcb用户
 							//5c78ac2bb45e5c0df479192e管理员
-							let login_id = cookie.get('_id'); //拿到当前账号_id;用户
+							let user = JSON.parse(cookie.get('user'))
+							let login_id = user.data._id; //拿到当前账号_id;用户
 							let isAdminxhr = new XMLHttpRequest();
 							var isAdmin = false;
 							isAdminxhr.onload = () => {
