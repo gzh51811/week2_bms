@@ -239,7 +239,7 @@
 										xhr.send('colname=order&_id=' + _id);
 									});
 								} else if(layEvent === 'edit') {
-									layer.msg('编辑操作');
+									location.href = 'orderEdit.html?_id=' + obj.data._id;
 								}
 							});
 
