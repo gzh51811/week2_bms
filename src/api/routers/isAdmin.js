@@ -19,7 +19,6 @@ router.post('/', async(ctx, next) => {
 		identity: "管理员"
 	});
 	//处理数据分页渲染
-	console.log(mongores);
 	let res1;
 	if(mongores.length != 0) {
 		res1 = {
